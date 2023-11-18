@@ -43,10 +43,10 @@ for i in range (len(bin_edges)):
 
 # Create a figure and axis for the plot
 fig = plt.figure(figsize=(8, 5))
-fig.patch.set_facecolor('#1a1b1b')
-fig.set_facecolor('#1a1b1b')
+fig.patch.set_facecolor('#161616')
+fig.set_facecolor('#161616')
 ax = plt.axes()
-ax.set_facecolor('#1a1b1b')
+ax.set_facecolor('#161616')
 
 # Plot histogram and customize the appearance
 plt.title(f'Prediction of Total Baggage with {expected_passengers} Passengers ({simu} simulations)'+'\n'+f'Flight Code : {flight_code}, Plane Type : {plane_type}').set_color('#F8F8F8')
