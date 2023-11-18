@@ -35,7 +35,7 @@ This branch deals with the implementation of augmented reality (AR) for measurin
 - Utilization of AR capabilities to provide real-time calculations of baggage dimensions
 -Implementation of user-friendly guides and visual cues within the AR interface to assist passengers in accurately measuring their baggage
 
-## To Run the Front-End (Using XCODE)
+## To Run the Front-End (Using XCode)
 ```bash
 npm run ios
 ```
