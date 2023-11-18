@@ -33,3 +33,11 @@ The Flight Baggage Prediction project uses Monte Carlo simulations to predict th
 git clone https://github.com/yourusername/flight-baggage-prediction.git
 cd flight-baggage-prediction
 pip install -r requirements.txt
+```
+
+## Usage
+```bash
+python baggage_prediction.py
+```
+
+
