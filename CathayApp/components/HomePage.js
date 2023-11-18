@@ -2,30 +2,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View, Image, StyleSheet, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import colors from '../assets/colors/colors';
-import homePageButtonData from '../assets/data/homePageButtonData';
-import activitiesData from '../assets/data/activitesData';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default HomePage = () => {
     const navigation = useNavigation();
     const [selectedButton, setSelectedButton] = useState('HomePage');
-
-    const handleButtonPress = (title) => {
-        setSelectedButton(title);
-            if (title === 'Home') {
-                navigation.navigate('HomePage');
-            } else if (title === 'Job Match') {
-                navigation.navigate('JobMatchPage');
-            } else if (title === 'Migrabot') {
-                navigation.navigate('MigrabotPage');
-            } else if (title === 'Transaction') {
-                navigation.navigate('TransactionPage');
-            } else if (title === 'Account') {
-                navigation.navigate('AccountPage');
-            }
-    };
-
     const goToOtherPage = () => {
         navigation.navigate('fillDataBaggage'); 
     };
@@ -538,12 +520,12 @@ export default HomePage = () => {
     },
     noteText:{
         fontFamily: 'Inter-Regular',
-        fontSize: 15,
+        fontSize: 14,
         color: colors.primary,
     },
     note2Text:{
         fontFamily: 'Inter-Regular',
-        fontSize: 15,
+        fontSize: 13,
         color: colors.greyLight,
         marginBottom: 20,
     },

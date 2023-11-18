@@ -7,7 +7,7 @@ export default Home = () => {
     const navigation = useNavigation();
 
     const goToOtherPage = () => {
-        navigation.navigate('SelectRole'); 
+        navigation.navigate('SignIn'); 
     };
 
     return (

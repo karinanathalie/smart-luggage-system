@@ -124,11 +124,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './components/Home';
-import SelectRole from './components/SelectRole';
 import SignIn from './components/SignIn';
 import HomePage from './components/HomePage';
-import TransactionPage from './components/TransactionPage';
 import fillDataBaggage from './components/fillDataBaggage';
+import profile from './components/profile';
 const Stack = createNativeStackNavigator();
 
 export default function App(){
@@ -146,13 +145,6 @@ export default function App(){
         }}
         />        
         <Stack.Screen 
-        name="SelectRole" 
-        component={SelectRole} 
-        options = {{
-          headerShown: false,
-        }}
-          />
-        <Stack.Screen 
         name="SignIn" 
         component={SignIn} 
         options = {{
@@ -167,15 +159,15 @@ export default function App(){
         }}
           />
         <Stack.Screen 
-        name="TransactionPage" 
-        component={TransactionPage} 
+        name="fillDataBaggage" 
+        component={fillDataBaggage} 
         options = {{
           headerShown: false,
         }}
-          />
+        />
         <Stack.Screen 
-        name="fillDataBaggage" 
-        component={fillDataBaggage} 
+        name="profile" 
+        component={profile} 
         options = {{
           headerShown: false,
         }}

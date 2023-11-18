@@ -14,6 +14,7 @@ const colors = {
     stroke: '#EDEDED',
     blue: "#0083AE",
     blueLight: '#CBE2EB',
+    gold: '#805E21',
 };
 
 export default colors;

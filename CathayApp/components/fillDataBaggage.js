@@ -6,37 +6,40 @@ import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native';
 
-export default HomePage = () => {
+export default fillDataBaggage = () => {
     const navigation = useNavigation();
     const [selectedButton, setSelectedButton] = useState('fillDataBaggage');
+    const [selectedOption, setSelectedOption] = useState('Small (± 57 x 39 x 22 cm)')
     const [numberOfItems, setNumberOfItems] = useState(1);
     const [additionalItems, setAdditionalItems] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
     const costPerPiece = 703.0;
     const asiaMilesPerBaggage = 200;
 
-    const handleButtonPress = (title) => {
-        setSelectedButton(title);
-            if (title === 'Home') {
-                navigation.navigate('HomePage');
-            } else if (title === 'Job Match') {
-                navigation.navigate('JobMatchPage');
-            } else if (title === 'Migrabot') {
-                navigation.navigate('MigrabotPage');
-            } else if (title === 'Transaction') {
-                navigation.navigate('TransactionPage');
-            } else if (title === 'Account') {
-                navigation.navigate('AccountPage');
-            }
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleExpand = () => {
+      setIsExpanded(!isExpanded);
     };
+
+    const handleOptionPress = (option) => {
+        setSelectedOption(option);
+        toggleExpand();
+      };
 
     const goBack = () => {
         navigation.navigate('HomePage'); 
     };
 
+    const goProfile = () => {
+        navigation.navigate('profile'); 
+    };
+
     const incrementItems = () => {
-        setNumberOfItems(numberOfItems + 1);
-        setAdditionalItems(additionalItems+ 1);
+        if (numberOfItems < 3) {
+            setNumberOfItems(numberOfItems + 1);
+            setAdditionalItems(additionalItems+ 1);
+        }
       };
     
     const decrementItems = () => {
@@ -72,9 +75,17 @@ export default HomePage = () => {
             
             {/* Passenger Type */}
             <ScrollView showsVerticalScrollIndicator={false}>
+            <TouchableOpacity onPress={goProfile}>
+            <View style={styles.passengerInformation}>
+                    <View style={styles.justifyInfo}> 
+                        <Image source={require('../assets/images/profile.png')} style={styles.passengerProfile}/>
+                        <Text style={styles.passengerName}>Mr John Smith</Text>
+                    </View>
+            </View>
+            </TouchableOpacity>
             <View style={styles.flightTypeContainer}> 
-                    <Text style={styles.flightTypelInfo}>Economy </Text>
-                    <Text style={styles.flightWeightInfo}> Light</Text>
+                <Text style={styles.flightTypelInfo}>Economy </Text>
+                <Text style={styles.flightWeightInfo}> Light</Text>
             </View>
 
             <View style={styles.bookingReference}> 
@@ -129,15 +140,58 @@ export default HomePage = () => {
                     {asiaMilesLabel !== '' && <Text style={styles.additionalLabel}>{asiaMilesLabel}</Text>}
                 </View>
 
-                <Text style={styles.questionText}>How many Kg (Baggage 1)?</Text>
-                <View style={styles.answerBox}>
-                    <Text style={styles.itemText}>23 Kg</Text>
-                </View>
-                <Text style={styles.questionText}>What is the size of the baggage?</Text>
-                <View style={styles.answerBox}>
-                    <Text style={styles.itemText}>Small (± 57 x 39 x 22 cm)</Text>
-                </View>
-                <Text style={styles.measure}>Measure with Camera</Text>
+                {[...Array(numberOfItems)].map((_, index) => (
+                    <View key={index}>
+                    <Text style={styles.questionText}>
+                        {`How many Kg (Baggage ${index + 1})?`}
+                    </Text>
+                    <View style={styles.answerBox}>
+                        <TextInput
+                            style={styles.itemText}
+                            placeholder={isFocused ? '' : '23.00 Kg'}
+                            placeholderTextColor={colors.greyLight}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                        />
+                    </View>
+                    <Text style={styles.questionText}>
+                        {`What is the size of the baggage (Baggage ${index + 1})?`}
+                    </Text>
+                    <View style={styles.answerBox}>
+                        <View style={styles.justifyInfo}>
+                            <Text style={styles.itemText}>{selectedOption}</Text>
+                            <View style={styles.down}>
+                            <TouchableOpacity onPress={toggleExpand}>
+                                <Image
+                                    source={require('../assets/images/down.png')}
+                                    style={[styles.down, isExpanded && styles.expandedDown]}
+                                />
+                            </TouchableOpacity>
+                            </View>
+                        </View>
+
+                        {/* Expanded options */}
+                        {isExpanded && (
+                            <View style={styles.expandedBox}>
+                                <TouchableOpacity onPress={() => handleOptionPress('Small (± 57 x 39 x 22 cm)')}>
+                                    <Text style={styles.additionalOptionText}>Small (± 57 x 39 x 22 cm)</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleOptionPress('Medium (± 60 x 43 x 26 cm)')}>
+                                    <Text style={styles.additionalOptionText}>Medium (± 60 x 43 x 26 cm)</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleOptionPress('Large (± 69 x 47 x 35.5 cm)')}>
+                                    <Text style={styles.additionalOptionText}>Large (± 69 x 47 x 35.5 cm)</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleOptionPress('Extra Large (± 81 x 55.8 x 35.5 cm)')}>
+                                    <Text style={styles.additionalOptionText}>Extra Large (± 81 x 55.8 x 35.5 cm)</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                    </View>
+                    <Text style={styles.measure}>Measure with Camera</Text>
+                    </View>
+
+                ))}
             </View>
 
             <View style={styles.additionalReference}> 
@@ -184,6 +238,29 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  passengerInformation:{
+        padding: 10,
+        borderWidth: 1,
+        marginTop: 20,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        width: '100%',
+        marginLeft: 'auto', 
+        marginRight: 'auto', 
+        backgroundColor: colors.primary,
+        borderColor: colors.primary,
+    },
+  passengerName:{
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 25,
+        color: colors.background,
+    },
+  passengerProfile:{
+        marginLeft: 10,
+        width: 40, 
+        marginRight: 12,
+        aspectRatio: 1, 
+    },
   headerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -219,9 +296,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 10,
     paddingHorizontal: 22,
-    marginVertical: 10,
+    marginBottom: 20,
     borderWidth: 1,
-    borderRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     width: '100%',
     marginLeft: 'auto', 
     marginRight: 'auto', 
@@ -276,7 +354,7 @@ itemText:{
     fontFamily: 'Montserrat-Regular',
     marginHorizontal: 10,   
     fontSize: 14,
-    color: colors.grey,
+    color: colors.greyLight,
 },
 checkBox:{
     marginLeft: 5,
@@ -430,5 +508,30 @@ asiaMilesText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 16,
     color: colors.greyLight,
+},
+down: {
+    width: 20,
+    height: 20,
+    marginLeft: 40,
+    resizeMode: 'contain',
+    marginLeft: "auto",
+    alignSelf: 'flex-end',
+    marginRight: 5,
+    aspectRatio: 1,
+  },
+expandedDown: {
+    transform: [{ rotate: '180deg' }],
+  },
+  additionalOptionText: {
+    fontFamily: 'Montserrat-Regular',
+    marginHorizontal: 10,   
+    marginTop: 10,
+    marginBottom: 5,
+    fontSize: 14,
+    color: colors.greyLight,
+  },
+line:{
+    marginTop: 5,
+    width: 330,
 },
 })
