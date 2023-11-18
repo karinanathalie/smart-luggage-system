@@ -14,7 +14,7 @@ export default fillDataBaggage = () => {
     const [additionalItems, setAdditionalItems] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
     const costPerPiece = 703.0;
-    const asiaMilesPerBaggage = 200;
+    const asiaMilesPerBaggage = 621;
 
     const [isExpanded, setIsExpanded] = useState(false);
 
