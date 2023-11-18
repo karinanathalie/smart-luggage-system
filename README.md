@@ -31,3 +31,11 @@ The Flight Baggage Prediction project uses Monte Carlo simulations to predict th
 #### Description:
 This branch deals with the implementation of augmented reality (AR) for measuring luggage dimensions. It enhances the user experience by providing a tool for users to measure their luggage using AR technology.
 #### Features:
+- Implementation of AR technology to enable users to measure the dimensions of their baggage using their mobile devices
+- Utilization of AR capabilities to provide real-time calculations of baggage dimensions
+-Implementation of user-friendly guides and visual cues within the AR interface to assist passengers in accurately measuring their baggage
+
+## To Run the Front-End (Using XCODE)
+```bash
+npm run ios
+```
