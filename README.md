@@ -43,15 +43,15 @@ This Python script utilizes computer vision techniques to capture an image from 
 
 1. Install dependencies using:
 
-    bash
+```bash
     pip install -r requirements.txt
-    
+```
 
 2. Run the script:
 
-    bash
+```bash
     python script_name.py
-    
+``` 
 
 3. Follow on-screen instructions to close the displayed images.
 
