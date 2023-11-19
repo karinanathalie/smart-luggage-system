@@ -12,7 +12,7 @@ passenger_type=["First class", "Business class", "Premium Economy", "Economy"]
 type_capacity = [0,40,32,296]
 
 # Load data from CSV file
-array = np.genfromtxt('Baggage.csv',delimiter=',', skip_header=1, skip_footer=1, dtype=str)
+array = np.genfromtxt('BaggageData1.csv',delimiter=',', skip_header=1, skip_footer=1, dtype=str)
 
 # Extract weights from the data
 weight = np.array([float(i[0]) for i in array])
