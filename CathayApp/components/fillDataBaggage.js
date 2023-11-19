@@ -13,6 +13,7 @@ export default fillDataBaggage = () => {
     const [numberOfItems, setNumberOfItems] = useState(1);
     const [additionalItems, setAdditionalItems] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
+    
     const costPerPiece = 703.0;
     const asiaMilesPerBaggage = 621;
 
@@ -25,7 +26,22 @@ export default fillDataBaggage = () => {
     const handleOptionPress = (option) => {
         setSelectedOption(option);
         toggleExpand();
-      };
+    };
+
+    const [isChecked1, setChecked1] = useState(false);
+    const handleCheckBox1Press = () => {
+        setChecked1(!isChecked1);
+    };
+
+    const [isChecked2, setChecked2] = useState(false);
+    const handleCheckBox2Press = () => {
+        setChecked2(!isChecked2);
+    };
+
+    const [isChecked3, setChecked3] = useState(false);
+    const handleCheckBox3Press = () => {
+        setChecked3(!isChecked3);
+    };
 
     const goBack = () => {
         navigation.navigate('HomePage'); 
@@ -91,18 +107,30 @@ export default fillDataBaggage = () => {
             <View style={styles.bookingReference}> 
                 <Text style={styles.titleText}>Cabin Baggage</Text>
                 <Text style={styles.questionText}>What item will you bring?</Text>
+                <TouchableOpacity onPress={handleCheckBox1Press}>
+                    <View style={styles.justifyInfo}>
+                        <Image
+                        source={isChecked1 ? require('../assets/images/checked.png') : require('../assets/images/checkbox.png')}
+                        style={styles.checkBox} />
+                        <Text style={styles.itemText}>1 Piece of Cabin Luggage</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleCheckBox2Press}>
+                    <View style={styles.justifyInfo}>
+                        <Image
+                        source={isChecked2 ? require('../assets/images/checked.png') : require('../assets/images/checkbox.png')}
+                        style={styles.checkBox} />
+                        <Text style={styles.itemText}>1 Small Item</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleCheckBox3Press}>
                 <View style={styles.justifyInfo}>
-                    <Image source={require('../assets/images/checkbox.png')} style={styles.checkBox} />
-                    <Text style={styles.itemText}>1 Piece of Cabin Luggage</Text>
+                        <Image
+                        source={isChecked3 ? require('../assets/images/checked.png') : require('../assets/images/checkbox.png')}
+                        style={styles.checkBox} />
+                        <Text style={styles.itemText}>I don't bring any cabin luggage</Text>
                 </View>
-                <View style={styles.justifyInfo}>
-                    <Image source={require('../assets/images/checkbox.png')} style={styles.checkBox} />
-                    <Text style={styles.itemText}>1 Small Item</Text>
-                </View>
-                <View style={styles.justifyInfo}>
-                    <Image source={require('../assets/images/checkbox.png')} style={styles.checkBox} />
-                    <Text style={styles.itemText}>I don’t bring any cabin baggage</Text>
-                </View>
+                </TouchableOpacity>
 
                 <Text style={styles.questionText}>How many Kg (in total)?</Text>
                 <View style={styles.answerBox}>

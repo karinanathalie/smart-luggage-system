@@ -458,17 +458,17 @@ export default HomePage = () => {
     },
     propertiesText:{
         fontFamily: 'Inter-Medium',
-        fontSize: 17,
+        fontSize: 15,
         color: colors.primary,
     },
     propertiesType:{
         fontFamily: 'Inter-Regular',
-        fontSize: 12,
+        fontSize: 11,
         color: colors.greyLight,
     },
     propertiesMeal:{
         fontFamily: 'Inter-Medium',
-        fontSize: 17,
+        fontSize: 15,
         color: colors.greyLight,
     },
     propertiesConfirmed:{
