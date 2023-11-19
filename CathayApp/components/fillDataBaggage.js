@@ -13,11 +13,9 @@ export default fillDataBaggage = () => {
     const [numberOfItems, setNumberOfItems] = useState(1);
     const [additionalItems, setAdditionalItems] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
-    
+    const [isExpanded, setIsExpanded] = useState(false);
     const costPerPiece = 703.0;
     const asiaMilesPerBaggage = 621;
-
-    const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpand = () => {
       setIsExpanded(!isExpanded);
@@ -212,6 +210,9 @@ export default fillDataBaggage = () => {
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => handleOptionPress('Extra Large (± 81 x 55.8 x 35.5 cm)')}>
                                     <Text style={styles.additionalOptionText}>Extra Large (± 81 x 55.8 x 35.5 cm)</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleOptionPress('Special Items (Measured During Check-in')}>
+                                    <Text style={styles.additionalOptionText}>Special Items (Measured During Check-in)</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
